@@ -1,3 +1,11 @@
+class Solution {
+public:
+    int trailingZeroes(int n) {
+        if (n < 5) return 0;          // base case
+        return n/5 + trailingZeroes(n/5);  // count 5s and recurse
+    }
+};
+
 /*
 class Solution {
 
