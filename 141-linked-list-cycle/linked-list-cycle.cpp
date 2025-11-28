@@ -1,3 +1,30 @@
+//flyod loop detection approach
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        //empty list
+        if(head == NULL) return NULL;
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while(slow != NULL && fast != NULL){
+            fast = fast->next;
+            if(fast != NULL){
+                fast = fast->next;
+            }
+            slow = slow->next;
+            if(slow == fast){
+                //loop detected
+                return slow;
+            }
+        }
+        return NULL;
+    }
+}; 
+
+/*
+//hashing approach
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
@@ -17,7 +44,7 @@ public:
             visited[temp] = true;
             temp = temp->next;
         }
-
         return false;
     }
-};
+}; 
+*/
