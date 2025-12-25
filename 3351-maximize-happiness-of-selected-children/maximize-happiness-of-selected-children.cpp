@@ -1,3 +1,5 @@
+//corrected version : 
+
 class Solution {
 public:
     long long maximumHappinessSum(vector<int>& happiness, int k) {
@@ -17,3 +19,21 @@ public:
         return sum;
     }
 };
+
+
+//trial version : 
+// class Solution {
+// public:
+//     long long maximumHappinessSum(vector<int>& happiness, int k) {
+
+//         long long sum = 0;
+        
+//         sort(happiness.begin(), happiness.end(), greater<int>());
+
+//         for(int j=0; j<k; j++){
+//             sum = sum + happiness[j];
+//             happiness[j] = happiness[j] - j;
+//         }
+//         return sum;
+//     }
+// };
