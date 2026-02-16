@@ -11,9 +11,9 @@ public:
         pair<int, int> left = diameterFast(root->left);
         pair<int, int> right = diameterFast(root->right);
 
-        int op1 = left.first;
-        int op2 = right.first;
-        int op3 = left.second + right.second;
+        int op1 = left.first;      //diameter is in left subtree
+        int op2 = right.first;      //diameter is in right subtree
+        int op3 = left.second + right.second;    //height of left + right subtree : edges = total nodes - 1
 
         pair<int, int> ans;
         ans.first = max(op1, max(op2, op3));
