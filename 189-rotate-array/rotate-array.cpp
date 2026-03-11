@@ -1,3 +1,4 @@
+//REVERSAL ALGORITHM : TC = O(N) & SC = O(1)
 class Solution {
 public:
     void reverseParts(vector<int>& nums, int start, int end){
@@ -7,7 +8,6 @@ public:
     }
     void rotate(vector<int>& nums, int k) {
         int n = nums.size();
-
         if(n == 0 || n == 1) return;
 
         k = k % n;
@@ -21,8 +21,7 @@ public:
 
 
 
-
-
+//CREATING TEMPORARY ARRAY : TC = O(N) & SC = O(N)
 // class Solution {
 // public:
 //     void rotate(vector<int>& nums, int k) {
