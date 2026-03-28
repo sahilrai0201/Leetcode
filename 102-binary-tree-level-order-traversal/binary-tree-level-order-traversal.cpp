@@ -17,12 +17,8 @@ public:
 
                 level.push_back(temp->val);
 
-                if(temp->left){       //left is non-null
-                    q.push(temp->left);
-                }
-                if(temp->right){
-                    q.push(temp->right);     //right is non null
-                }
+                if(temp->left) q.push(temp->left);       //left is non-null
+                if(temp->right) q.push(temp->right);      //right is non null
             }
             ans.push_back(level);
         }
