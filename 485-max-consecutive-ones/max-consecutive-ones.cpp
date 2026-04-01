@@ -1,7 +1,9 @@
+// Time Complexity: O(n) (single pass)
+// Space Complexity: O(1) (no extra space)
+
 class Solution {
 public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
-
         int count = 0;
         int maxcount = 0;
 
