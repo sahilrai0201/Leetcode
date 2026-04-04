@@ -1,4 +1,7 @@
-//APPROACH_1
+//APPROACH_1 : Kadane’s Algorithm (Standard / DP-style form)
+//TC = O(n) and SC = O(1) :
+//*** BETTER APPROACH ***
+
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
@@ -14,7 +17,9 @@ public:
 };
 
 
-//APPROACH_2
+//APPROACH_2 : Kadane’s Algorithm (Greedy form)
+//TC = O(n) and SC = O(1) :
+
 // class Solution {
 // public:
 //     int maxSubArray(vector<int>& nums) {
