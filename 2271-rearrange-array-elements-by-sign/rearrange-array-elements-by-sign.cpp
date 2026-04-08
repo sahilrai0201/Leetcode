@@ -1,4 +1,4 @@
-//APPROACH 2 : TC = O() & SC = O()------------------------>
+//APPROACH 2 : TC = O(N) & SC = O(N)------------------------>
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
