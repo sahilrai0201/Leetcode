@@ -1,3 +1,4 @@
+//TC = O(N*N) & SC = O(N*N)-------------------------->
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
