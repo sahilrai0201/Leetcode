@@ -1,4 +1,4 @@
-//APPROACH-1 : 
+//APPROACH-1 : TC = O(N) & SC = O(N)-------------------------------->
 class Solution {
 public:
     vector<int> findErrorNums(vector<int>& nums) {
@@ -26,7 +26,7 @@ public:
 
 
 
-//APPROACH-2 : 
+//APPROACH-2 : TC = O(N) & SC = o(1)---------------------------->
 // class Solution {
 // public:
 //     vector<int> findErrorNums(vector<int>& nums) {
