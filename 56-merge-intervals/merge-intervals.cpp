@@ -1,24 +1,34 @@
+// TC = O(N log N)   -> sorting
+// SC = O(N)         -> result vector
+
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         
-        //sort intervals based on start time
-        sort(intervals.begin(), intervals.end());
+        sort(intervals.begin(), intervals.end());   // sort by start time
 
-        //result vector
-        vector<vector<int>> merged;
+        vector<vector<int>> result;
+        int n = intervals.size();
 
-        //traverse intervals
-        for(auto& interval : intervals){
-            //if merged is empty or current interval does not overlap
-            if(merged.empty() || merged.back()[1] < interval[0]){
-                merged.push_back(interval);
+        int start = intervals[0][0];   // first interval start
+        int end = intervals[0][1];     // first interval end
+
+        for(int i = 0; i < n; i++) {
+
+            // if overlap exists
+            if(end >= intervals[i][0]) {
+                end = max(end, intervals[i][1]);   // extend end
             }
-            else{
-                //overlap case - merge them by updating end time
-                merged.back()[1] = max(merged.back()[1], interval[1]);
+            else {
+                result.push_back({start, end});    // store merged interval
+
+                start = intervals[i][0];           // new start
+                end = intervals[i][1];             // new end
             }
         }
-        return merged;
+
+        result.push_back({start, end});   // push last interval
+
+        return result;
     }
 };
