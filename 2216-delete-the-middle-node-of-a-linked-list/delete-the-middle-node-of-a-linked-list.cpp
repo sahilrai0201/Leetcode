@@ -17,6 +17,7 @@ public:
 
         //delete middle node
         prev->next = slow->next;
+        delete slow;
 
         //return head of the LL
         return head;
