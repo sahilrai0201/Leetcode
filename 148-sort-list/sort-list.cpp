@@ -1,4 +1,25 @@
 class Solution {
+private:
+    ListNode* merge(ListNode* l1, ListNode* l2){
+        ListNode dummy(0);
+        ListNode* tail = &dummy;
+
+        while(l1 && l2){
+            if(l1->val <= l2->val){
+                tail->next = l1;
+                l1 = l1->next;
+            }
+            else{
+                tail->next = l2;
+                l2 = l2->next;
+            }
+            tail = tail->next;
+        }
+        
+        tail->next = l1 ? l1 : l2;
+        return dummy.next;
+    }
+
 public:
     ListNode* sortList(ListNode* head) {
         if(!head || !(head->next)) return head;
@@ -15,30 +36,11 @@ public:
         ListNode* mid = slow->next;
         slow->next = NULL;
 
-        //3 step: sort halves
+        //3 step: sort halves using recursion
         ListNode* left = sortList(head);
         ListNode* right = sortList(mid);
 
         //4 step: merge
         return merge(left, right);
-    }
-
-    ListNode* merge(ListNode* l1, ListNode* l2){
-        ListNode dummy(0);
-        ListNode* tail = &dummy;
-
-        while(l1 && l2){
-            if(l1->val <= l2->val){
-                tail->next = l1;
-                l1 = l1->next;
-            }
-            else{
-                tail->next = l2;
-                l2 = l2->next;
-            }
-            tail = tail->next;
-        }
-        tail->next = l1 ? l1 : l2;
-        return dummy.next;
     }
 };
