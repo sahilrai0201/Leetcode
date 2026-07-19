@@ -1,30 +1,51 @@
 class Solution {
 private:
-    void solve(string digit, string output, int index, vector<string>& ans, string mapping[]){
-        //base case
-        if(index >= digit.length()){
+    void solve(int index, string digits, string mapping[], string output,
+               vector<string>& ans) {
+
+        // Base Case: processed all digits
+        if (index >= digits.length()) {
             ans.push_back(output);
             return;
         }
 
-        int number = digit[index] - '0';
+        // Get letters corresponding to current digit
+        int number = digits[index] - '0';
         string value = mapping[number];
 
-        for(int i = 0; i < value.length(); i++){
+        // Try every possible letter
+        for (int i = 0; i < value.length(); i++) {
+
+            // PICK
             output.push_back(value[i]);
-            solve(digit, output, index+1, ans, mapping);
+
+            // Recur for next digit
+            solve(index + 1, digits, mapping, output, ans);
+
+            // BACKTRACK
             output.pop_back();
         }
-    }    
+    }
+
 public:
     vector<string> letterCombinations(string digits) {
-        vector<string> ans;
-        if(digits.length() == 0) return ans;
         
+        vector<string> ans;
+
+        // Edge case
+        if (digits.length() == 0)
+            return ans;
+    
         string output;
-        int index = 0;
-        string mapping[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        solve(digits, output, index, ans, mapping);
+
+        // Digit -> Letters mapping
+        string mapping[10] = {
+            "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+        };
+
+        // Start recursion
+        solve(0, digits, mapping, output, ans);
+
         return ans;
     }
 };
