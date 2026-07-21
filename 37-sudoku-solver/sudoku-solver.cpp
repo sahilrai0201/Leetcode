@@ -1,38 +1,63 @@
 class Solution {
 public:
-    bool isSafe(int row, int col, vector<vector<char>>& board, char val){
-        for(int i=0; i<9; i++){
-            //row check
-            if(board[row][i] == val) return false;
+    // Check whether 'val' can be placed at (row, col)
+    bool isSafe(int row, int col, vector<vector<char>>& board, char val) {
 
-            //col check
-            if(board[i][col] == val) return false;
+        for (int i = 0; i < 9; i++) {
 
-            //3*3 matrix check
-            if(board[3*(row/3) + i/3][3*(col/3) + i%3] == val) return false;
+            // Check current row
+            if (board[row][i] == val)
+                return false;
+
+            // Check current column
+            if (board[i][col] == val)
+                return false;
+
+            // Check corresponding 3x3 subgrid
+            if (board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == val)
+                return false;
         }
+
+        // Safe to place
         return true;
     }
 
-    bool solve(vector<vector<char>>& board){
+    bool solve(vector<vector<char>>& board) {
+
         int n = board.size();
 
-        for(int row=0; row<n; row++){
-            for(int col=0; col<n; col++){
-                //cell empty
-                if(board[row][col] == '.'){
-                    for(char val='1'; val<='9'; val++){
-                        if(isSafe(row, col, board, val)){
+        // Traverse the entire board
+        for (int row = 0; row < n; row++) {
+            for (int col = 0; col < n; col++) {
+
+                // Process only empty cells
+                if (board[row][col] == '.') {
+
+                    // Try every digit from 1 to 9
+                    for (char val = '1'; val <= '9'; val++) {
+
+                        // If current digit can be placed
+                        if (isSafe(row, col, board, val)) {
+
+                            // Choose
                             board[row][col] = val;
 
-                            if(solve(board)) return true;
-                            board[row][col] = '.';   //backtrack
+                            // Explore remaining board
+                            if (solve(board))
+                                return true;
+
+                            // Undo the choice (Backtrack)
+                            board[row][col] = '.';
                         }
                     }
+
+                    // No digit worked for this cell
                     return false;
                 }
             }
         }
+
+        // No empty cell left -> Sudoku solved
         return true;
     }
 
