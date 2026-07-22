@@ -1,61 +1,42 @@
 class MyQueue {
-
-    int* arr;
-    int front;
-    int rear;
-    int size;
-
 public:
+    stack<int> input, output;
+
     MyQueue() {
-        //implement the constructor
-        size = 10000;
-        arr = new int[size];
-        front = 0;
-        rear = 0;
         
     }
-    
+
     void push(int x) {
-        if(rear < size){
-            arr[rear] = x;
-            rear++;
-        }
+        input.push(x);                  // Always push into input stack
     }
-    
+
     int pop() {
-        if(front == rear){
-            return -1;
-        }
-        else{
-            int ans = arr[front];
-            front++;
-
-            if(front == rear){
-                front = 0;
-                rear = 0;
+        // Transfer only if output is empty
+        if(output.empty()) {
+            while(!input.empty()) {
+                output.push(input.top());   // Reverse the order
+                input.pop();
             }
-            return ans;
         }
+
+        int frontElement = output.top();    // Queue front
+        output.pop();
+        return frontElement;
     }
-    
+
     int peek() {
-        if(front == rear){
-            return -1;
+        // Transfer only if output is empty
+        if(output.empty()) {
+            while(!input.empty()) {
+                output.push(input.top());
+                input.pop();
+            }
         }
-        return arr[front];
+
+        return output.top();    // Front of queue
     }
-    
+
     bool empty() {
-        return front == rear;
+        return input.empty() && output.empty();
     }
-
 };
-
-/**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue* obj = new MyQueue();
- * obj->push(x);
- * int param_2 = obj->pop();
- * int param_3 = obj->peek();
- * bool param_4 = obj->empty();
- */
