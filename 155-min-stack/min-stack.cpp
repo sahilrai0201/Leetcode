@@ -1,6 +1,6 @@
 class MinStack {
     stack<long long> st;
-    long long mini;
+    long long mini;     // Stores current minimum element
 
 public:
     MinStack() {
@@ -8,50 +8,53 @@ public:
     }
     
     void push(int val) {
-        if(st.empty()) {
+        if (st.empty()) {
+            // First element becomes the minimum
             st.push(val);
             mini = val;
         }
-        else if(val >= mini) {
+        else if (val >= mini) {
+            // Normal push if value is not a new minimum
             st.push(val);
         }
         else {
-            // encode value
+            // New minimum found
+            // Store encoded value instead of actual value
+            // Formula: encoded = 2 * newMin - oldMin
             st.push(2LL * val - mini);
+
+            // Update current minimum
             mini = val;
         }
     }
     
     void pop() {
-        if(st.empty()) return;
+        if (st.empty()) return;
 
         long long top = st.top();
         st.pop();
 
-        if(top < mini) {
-            // decode previous minimum
+        // Encoded value means the minimum element is being removed
+        if (top < mini) {
+            // Restore previous minimum
+            // Formula: oldMin = 2 * currentMin - encoded
             mini = 2 * mini - top;
         }
     }
     
     int top() {
         long long top = st.top();
-        if(top < mini)
+
+        // Encoded value represents the current minimum
+        if (top < mini)
             return mini;
+
+        // Otherwise return actual top value
         return top;
     }
     
     int getMin() {
+        // Current minimum element
         return mini;
     }
 };
-
-
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack* obj = new MinStack();
- * obj->push(val);
- * obj->pop();
- * int param_3 = obj->top();
- * int param_4 = obj->getMin();
- */
