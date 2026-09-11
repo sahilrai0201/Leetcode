@@ -1,6 +1,5 @@
 class Solution {
 public:
-
     // Custom comparator to make the priority_queue a min-heap
     struct Compare {
         bool operator()(ListNode* a, ListNode* b) {
@@ -9,7 +8,6 @@ public:
     };
 
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-
         // Min-heap storing nodes based on their values
         priority_queue<ListNode*, vector<ListNode*>, Compare> pq;
 
